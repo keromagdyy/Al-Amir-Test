@@ -29,17 +29,22 @@ public class AddPessonActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(TextUtils.isEmpty(txtName.getText()) || TextUtils.isEmpty(txtPhone.getText())){
+                    Toast.makeText(AddPessonActivity.this, "Please Check for inputs", Toast.LENGTH_SHORT).show();
+                }
+                else {
 
-                String name = txtName.getText().toString().trim();
-                String phone = txtPhone.getText().toString().trim();
-                String gender = txtGender.getSelectedItem().toString().trim();
+                    String name = txtName.getText().toString().trim();
+                    String phone = txtPhone.getText().toString().trim();
+                    String gender = txtGender.getSelectedItem().toString().trim();
 
-                helper db = new helper(AddPessonActivity.this);
-                db.addPerson(name, phone, gender);
+                    helper db = new helper(AddPessonActivity.this);
+                    db.addPerson(name, phone, gender);
 
-                Intent intent = new Intent(getBaseContext(),homeActivity.class);
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(getBaseContext(),homeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         });
