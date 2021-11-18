@@ -47,16 +47,21 @@ public class updateActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = txtName.getText().toString();
-                phone = txtPhone.getText().toString();
-                gender = txtGender.getSelectedItem().toString();
+                if(TextUtils.isEmpty(txtName.getText()) || TextUtils.isEmpty(txtPhone.getText())){
+                    Toast.makeText(updateActivity.this, "Please Check for inputs", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    name = txtName.getText().toString();
+                    phone = txtPhone.getText().toString();
+                    gender = txtGender.getSelectedItem().toString();
 
-                helper db = new helper(updateActivity.this);
-                db.updateData(id, name, phone, gender);
+                    helper db = new helper(updateActivity.this);
+                    db.updateData(id, name, phone, gender);
 
-                Intent intent = new Intent(getBaseContext(), homeActivity.class);
-                startActivity(intent);
-                finish();
+                    Intent intent = new Intent(getBaseContext(), homeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
